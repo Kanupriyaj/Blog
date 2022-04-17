@@ -1,0 +1,17 @@
+{% extends 'users/index.html'%}
+{% block body_content %}
+
+
+
+{% include "users/heading.html" %}
+<h1>Add Category</h1>
+
+<form href="{% url 'categories:add_category'%}" method="POST">
+	{% csrf_token %}
+	<label for='category_name'>Enter Category</label>
+	<input type="text" name="category_name">
+	<input type="submit" name="submit">
+</form>
+
+
+{% endblock %}

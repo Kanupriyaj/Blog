@@ -1,0 +1,34 @@
+{% load static %}
+{% load custom_tags %}
+
+
+<h1>Post</h1>
+
+	{% for objs  in post_objs%}
+	<br><br>
+		
+		{{objs.title}}<br>
+		{{objs.created}}<br>
+		{% days objs as time_day %}
+		{%if time_day == 0 %}
+		Posted Today
+		{%else%} 
+		Posted {{time_day}} days ago
+		{% endif %}<br>
+		{{objs.location}}<br>
+		{{objs.user}}<br>
+		{{objs.category}}<br>
+		{{objs.description}}<br>
+		<img src="{{ objs.image.url }}"/><br><br>
+
+		{{objs.likes_count}}
+		<a href="{% url 'post:like_post' objs.id%}">Like</a>
+		{{objs.postcomment_set.all.count}}
+		<a href="{% url 'post:comment_post' objs.id %}">Comment</a>
+		
+		
+
+		<hr>
+	
+	{% endfor %}
+

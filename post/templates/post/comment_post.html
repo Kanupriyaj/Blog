@@ -1,0 +1,24 @@
+{% load static %}
+{% load custom_tags %}
+
+<h2>Post</h2>
+<br><br>
+		{{obj.title}}<br>
+		{{obj.created}}<br>
+		{% days obj as time_day %}
+		{%if time_day == 0 %}
+		Posted Today
+		{%else%} 
+		Posted {{time_day}} days ago
+		{% endif %}<br>
+		{{obj.location}}<br>
+		{{obj.user}}<br>
+		{{obj.category}}<br>
+		{{obj.description}}<br>
+		<img src="{{ obj.image.url }}"/><br><br>
+		<form href="{% url 'post:comment_post' obj.id%}" method="POST">
+		{% csrf_token %}
+			<label for='comment'>Comment</label>
+			<input type="text" name="comment">
+			<input type="submit">
+		</form>

@@ -1,0 +1,6 @@
+{% extends 'users/index.html'%}
+{% block body_content %}
+{% load custom_tags %}
+{% category_list_tag category_objs %}
+
+{% endblock %}

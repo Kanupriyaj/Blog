@@ -1,0 +1,63 @@
+{% extends 'users/index.html'%}
+{% block body_content %}
+
+{% if request.user.is_authenticated %}
+
+<h2>Add Post</h2>
+<h3>Select Category</h3>
+
+
+
+<form href=" {%url 'post:add_post'%}" method='POST' enctype="multipart/form-data">
+  {% csrf_token %}
+  
+  <select  name="category_id" autofocus="" required="">
+  		
+  {% for obj in category_objs %}
+        <option value={{obj.id}}>{{obj.name}}</option>
+  {% endfor %}
+
+   </select>
+   <br><br>
+
+    <p>  {{form.title.label}} {{form.title}}  {{form.title.errors}}</p>
+    <p>  {{form.image.label}} {{form.image}}</p>
+    <p>  {{form.location.label}}  {{form.location}}</p>
+    <p>  {{form.description.label}}  {{form.description}}</p>
+    <p>  <input type="submit"></p>
+
+  {% comment %}
+  {% if form.errors %}
+    <div class="alert alert-error">
+      <h4>Please fix the following errors</h4>
+      <ul>
+        {% for field in form %}
+        {{field}}
+          {% if field.errors %}
+            {% for error in field.errors %}
+              <li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% if form.non_field_errors %}
+        {{ form.non_field_errors }}
+      {% endif %}
+    </div>
+  {% endif %}
+{% endcomment %}
+
+</form>
+
+<hr>
+
+
+{%else%}
+
+<a href="{% url 'users:index' %}">Index</a>
+{% endif %}
+
+{% endblock %}
+
+
+

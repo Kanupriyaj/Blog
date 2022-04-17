@@ -1,0 +1,14 @@
+{% extends 'users/index.html'%}
+{% block body_content %}
+
+<h1>Login</h1>
+<form href="{% url 'users:login_view' %}" method='POST'>
+	{% csrf_token %}
+	<label for='username'>User Name</label>
+	<input type="text" name="username"><br><br>
+	<label for='password'>Password</label>
+	<input type="password" name="password"><br><br>
+	<input type="submit" name="submit">
+</form>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+<h4>Categories</h4>
+<ul>
+	{% for obj in category_objs %}
+
+	<li>
+		<a href= "{% url 'categories:show_category'  %}">{{obj.name}}</a>
+	</li>
+	{% endfor %}
+</ul>

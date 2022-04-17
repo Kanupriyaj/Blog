@@ -1,0 +1,36 @@
+{% extends 'users/index.html'%}
+{% block body_content %}
+
+{% if request.user.is_authenticated %}
+
+<h2>Select Category</h2>
+
+
+<form href=" {%url 'categories:add_sub_category'%}" method='POST'>
+  {% csrf_token %}
+
+
+  <select id="category_name" name="category_name" autofocus="" required="">
+  		
+  {% for obj in category_objs %}
+        <option value={{obj.name}}>{{obj.name}}</option>
+  {% endfor %}
+
+   </select>
+   <br><br>
+
+
+  <label>Sub Category</label>
+  <input type="text" name="sub_category">
+  <input type="submit">
+</form>
+
+
+
+
+{%else%}
+
+<a href="{% url 'users:index' %}">Index</a>
+	
+{% endif%}
+{% endblock %}
